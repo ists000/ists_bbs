@@ -26,24 +26,17 @@ userRouter.post("/login",async(req,res) => {
 
 // 6.Apr Modification:
 // added register code
-userRouter.post("/signup",async(req,res) => {
+userRouter.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
-    bcrypt.hash(req.body.password,10,async (err,hash) => {
-        if (!err) {
-        try {
-            const sql = "INSERT INTO users (username, email, password) VALUES ($1,$2,$3) returning user_id"
-            const result = await query(sql, [username, email, hash]);
-            res.status(200).json({user_id: result.rows[0].user_id}) 
-        } catch (error) {
-            res.statusMessage = error
-            res.status(500).json({error: error})
-        }
-        } else {
-        res.statusMessage = err
-        res.status(500).json({error: err})
-        }
-    })
-})
+    try {
+        const sql = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) returning user_id";
+        const result = await query(sql, [username, email, password]);
+        res.status(200).json({ user_id: result.rows[0].user_id });
+    } catch (error) {
+        res.statusMessage = error;
+        res.status(500).json({ error: error });
+    }
+});
 
 // Request password reset 
 userRouter.post("/reset", async (req, res) => {
