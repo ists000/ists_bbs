@@ -19,23 +19,6 @@ Content-Type: application/json
 "password":"wrongpassword"
 }
 
-### test passwordreset email exsits 
-POST http://localhost:3001/user/reset
-Content-Type: application/json
-
-{
-"email":"admin@123456",
-"newPassword":"newpassword"
-}
-
-### test passwordreset email dosent exsits 
-POST http://localhost:3001/user/reset
-Content-Type: application/json
-
-{
-"email":"admin@456",
-"newPassword":"wrongpassword"
-}
 
 # 6.Apr Modification:
 ### Registration 
@@ -46,6 +29,32 @@ Content-Type: application/json
 "username":"taisheng1",
 "email":"taisheng@gmail1",
 "password":"taisheng1234"
+}
+
+# 7.Apr Modification:
+### test email exsits
+POST http://localhost:3001/user/check-email
+Content-Type: application/json
+
+{
+"email":"admin@123456"
+}
+
+### test email doesn't exsits 
+POST http://localhost:3001/user/reset-password
+Content-Type: application/json
+
+{
+"email":"admin@456"
+}
+
+### test password has been changed
+POST http://localhost:3001/user/reset2
+Content-Type: application/json
+
+{
+"email":"admin@123456",
+"password":"passwordnewtest"
 }
 
 
