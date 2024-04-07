@@ -95,6 +95,27 @@ class User {
     }
   }
 
+  async checkUsernameExists(username) {
+    const data = JSON.stringify({ username: username });
+    try {
+      const response = await fetch(BACKEND_URL + "/user/check-username", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: data,
+      });
+
+      if (response.ok === true) {
+        const json = await response.json();
+        return json.exists;
+      } else {
+        throw new Error(response.statusText);
+      }
+    } catch (error) {
+      console.error("An error occurred while checking email existence:", error);
+      throw error;
+    }
+  }
+
   async reset(newPassword) {
     const data = JSON.stringify({ newPassword: newPassword });
     try {
