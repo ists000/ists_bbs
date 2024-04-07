@@ -26,9 +26,9 @@ POST http://localhost:3001/user/signup
 Content-Type: application/json
 
 {
-"username":"taisheng1",
-"email":"taisheng@gmail1",
-"password":"taisheng1234"
+"username":"taisheng12",
+"email":"taisheng@gmail12",
+"password":"taisheng12345"
 }
 
 # 7.Apr Modification:

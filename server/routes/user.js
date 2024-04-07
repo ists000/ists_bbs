@@ -44,13 +44,31 @@ userRouter.post("/check-email", async (req, res) => {
     try {
         const email = req.body.email;
         // Check if the email exists
-        const userExistsSql = "SELECT * FROM users WHERE email = $1";
-        const userExistsResult = await query(userExistsSql, [email]);
+        const emailExistsSql = "SELECT * FROM users WHERE email = $1";
+        const emailExistsResult = await query(emailExistsSql, [email]);
 
-        if (userExistsResult.rowCount === 1) {
-            res.status(200).json({ message: 'Password updated successfully' });
+        if (emailExistsResult.rowCount === 1) {
+            res.status(200).json({ message: 'email has already existed in the database' });
         } else {
-            res.status(404).json({ error: 'User with this email not found' });
+            res.status(201).json({ error: 'email does not exist' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// check username has existed in the database
+userRouter.post("/check-username", async (req, res) => {
+    try {
+        const username = req.body.username;
+        // Check if the username exists
+        const usernameExistsSql = "SELECT * FROM users WHERE username = $1";
+        const usernameExistsResult = await query(usernameExistsSql, [username]);
+
+        if (usernameExistsResult.rowCount === 1) {
+            res.status(200).json({ message: 'username has already existed in the database' });
+        } else {
+            res.status(201).json({ error: 'username does not exist' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });

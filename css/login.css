@@ -4,24 +4,23 @@
     box-sizing: border-box;
   }
   
-  body {
-    font-family: sans-serif;
+  body, html {
+    font-family: Poppins, sans-serif;
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    height: 100vh;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 390px;
-    height: 844px;
-    border: solid;
-    border-color: grey;
-    border-width: 1px;
-    position: relative;
-  }
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
   
   .inter-body {
     font-family: "Inter", sans-serif;
@@ -29,40 +28,37 @@
   }
   
   .btn {
-    background-color: black; 
-    color: white; 
-    border: none; 
-    width: 312px;
+    border: 0px;
+    background-color: #333; 
+    border: none;
+    color: white;
+    width: 100%;
+    max-width: 312px;
     height: 48px;
     border-radius: 90px;
-    font-size: 16px;
-    font-family: inherit;
+    font-size: 15px;
     margin-bottom: 10px;
-    position:absolute;
-    line-height: 32px;
-  }
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
   
-  /* 修改按钮的鼠标悬停样式 */
-  .btn:hover {
-    background-color: #333; /* 悬停时的背景颜色 */
-    color: white; /* 悬停时的文本颜色 */
-  }
+.btn:hover {
+  background-color: #FFB11B; 
+  color: white; 
+}
 
-
-
-.login-form {
+  .login-form {
     max-width: 400px;
     width: 100%;
     padding: 20px;
     margin: auto;
-    position: relative;
-    top: -90px;
-    margin-left: 6px;
   }
+  
 
   .login-title {
     font-weight: bold;
-    color: #23262F;
+    color: #FFB11B;
 
   }
 
@@ -76,27 +72,26 @@
   
   
   .form-control {
-    background-color: #ebf0f8 !important; 
-    border: none;
-    width: 311px;
-    height: 46px;
-    font-size: 16px;
-    border-radius: 6px;
-  
-  
+  background-color: #FAF9F0 !important; 
+  border: none;
+  width: 311px;
+  height: 46px;
+  font-size: 12px; 
+  font-family: sans-serif; 
+  border-radius: 6px;
   }
   
   .img_login img {
-    position: relative;
-    width: 390px;
-    height: 218.8px;
-    top: -36px;
-  }
+    width: 100%;
+    max-width: 390px;
+    height: auto; 
+}
   
   
   .forget-password {
+    font-family: sans-serif;
     text-align: right; 
-    margin-right: 15px;
+    margin-right: 14px;
   }
   
   .forget-password a {
@@ -108,6 +103,7 @@
   
   .btn_login {
     margin-top: 15px;
+
   }
   
   
@@ -117,7 +113,9 @@
   }
 
 .tips-text p {
-    color:#718096;
+  font-family: sans-serif; 
+  font-size: 0.8rem;
+  color:#718096;
     ;
   }
   .tips-text a {
@@ -125,3 +123,34 @@
     color:  #425466;
     font-weight: bold;
   }
+
+  @media (max-width: 499px){
+    .container-fluid {
+      padding: 1rem;
+      background-image: none;
+      background-color: #FFFDFE; 
+    }
+    }
+    
+    @media (min-width: 500px) {
+      body {
+        background-image: url('/img/demo4.jpeg');
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed; 
+      }
+      .container-fluid {
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.2); 
+        backdrop-filter: blur(4px);
+      }
+    
+    .login-card {
+      background-color: #FFFDFE; 
+      padding: 20px; 
+      border-radius: 1rem; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      max-width: 400px;
+      margin: auto;
+    }
+    }
