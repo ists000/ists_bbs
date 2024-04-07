@@ -10,6 +10,14 @@ let confirmPassword_input = document.querySelector("#confirmPassword");
 let error = document.querySelector("#error");
 let btn = document.querySelector(".btn.btn-dark");
 
+// Add keydown event listener to window
+window.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    btn.click(); // Trigger button click event
+  }
+});
+
 btn.addEventListener("click", async (event) => {
   event.preventDefault();
 

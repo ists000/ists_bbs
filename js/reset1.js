@@ -7,6 +7,14 @@ let email_input = document.querySelector("#email");
 let error = document.querySelector("#error");
 let btn = document.querySelector(".btn.btn-dark");
 
+// Add keydown event listener to window
+window.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    btn.click(); // Trigger button click event
+  }
+});
+
 // Add Click Button Event
 btn.addEventListener("click", async (event) => {
   event.preventDefault();
@@ -26,6 +34,7 @@ btn.addEventListener("click", async (event) => {
 
     if (exists) {
       // if exist, to reset2.html
+      error.style.display = "none";
       window.location.href = "../reset2.html";
     } else {
       // if not exist, display error info

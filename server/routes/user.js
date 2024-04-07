@@ -38,8 +38,27 @@ userRouter.post("/signup", async (req, res) => {
     }
 });
 
+// 7.Apr Modification:
+// check email address has existed in the database
+userRouter.post("/check-email", async (req, res) => {
+    try {
+        const email = req.body.email;
+        // Check if the email exists
+        const userExistsSql = "SELECT * FROM users WHERE email = $1";
+        const userExistsResult = await query(userExistsSql, [email]);
+
+        if (userExistsResult.rowCount === 1) {
+            res.status(200).json({ message: 'Password updated successfully' });
+        } else {
+            res.status(404).json({ error: 'User with this email not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Request password reset
-userRouter.post("/reset", async (req, res) => {
+userRouter.post("/reset-password", async (req, res) => {
     try {
         const email = req.body.email;
         const newPassword = req.body.newPassword; // Assuming newPassword is provided in the request body
@@ -58,12 +77,6 @@ userRouter.post("/reset", async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
-          
- 
-
-
-
 
 module.exports = {
     userRouter
