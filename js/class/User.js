@@ -74,8 +74,29 @@ class User {
     }
   }
 
-  async reset(email, newPassword) {
-    const data = JSON.stringify({ email: email, newPassword: newPassword });
+  async checkEmailExists(email) {
+    const data = JSON.stringify({ email: email });
+    try {
+      const response = await fetch(BACKEND_URL + "/user/check-email", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: data,
+      });
+
+      if (response.ok === true) {
+        const json = await response.json();
+        return json.exists;
+      } else {
+        throw new Error(response.statusText);
+      }
+    } catch (error) {
+      console.error("An error occurred while checking email existence:", error);
+      throw error;
+    }
+  }
+
+  async reset(newPassword) {
+    const data = JSON.stringify({ newPassword: newPassword });
     try {
       const response = await fetch(BACKEND_URL + "/user/reset-password", {
         method: "post",

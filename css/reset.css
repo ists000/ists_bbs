@@ -51,6 +51,20 @@ form {
   color: #7a828a;
 }
 
+#lastForm {
+  margin-bottom: 331px;
+}
+
+#checkbox {
+  margin-bottom: 125px;
+}
+
+#error,
+#checkError {
+  font-size: 0.875em;
+  color: red;
+}
+
 /* --------- Checkbox --------- */
 .form-check {
   font-size: 12px;
